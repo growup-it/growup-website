@@ -4,6 +4,8 @@ const coursesData = require('./data/courses.json');
 
 const app = express();
 
+// MANDATORY FIX FOR VERCEL PATH RESOLUTION
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -21,10 +23,10 @@ app.get('/course/:id', (req, res) => {
         res.status(404).send('Course not found');
     }
 });
+
+// Contact Page
 app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
-module.exports = app; // Required for Vercel
-const PORT = process.env.PORT || 3005;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+module.exports = app;
