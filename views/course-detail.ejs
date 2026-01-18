@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= course.title %> | GrowUp Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body { background: #0f172a; color: #ffffff; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at top right, #1e3a8a, transparent),
+                        radial-gradient(circle at 10% 20%, #4c1d95, transparent);
+        }
+        .curriculum-item {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .curriculum-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+        /* New Image Styling */
+        .course-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .course-image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #0f172a, transparent);
+        }
+    </style>
+</head>
+<body class="hero-bg min-h-screen font-sans">
+
+    <%- include('partials/header') %>
+
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+            <div class="lg:col-span-1 animate__animated animate__fadeInUp">
+                <div class="glass-panel p-6 rounded-3xl sticky top-24">
+
+                    <div class="course-image-container aspect-video">
+                        <img src="<%= course.image %>" alt="<%= course.title %>" class="w-full h-full object-cover">
+                    </div>
+
+                    <h1 class="text-4xl font-extrabold mb-4 text-gradient"><%= course.title %></h1>
+                    <p class="text-white text-opacity-90 mb-8 leading-relaxed font-medium">
+                        <%= course.description %>
+                    </p>
+                    <div class="space-y-4">
+                        <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black text-lg py-4 rounded-xl transition shadow-lg shadow-blue-500/20 uppercase tracking-tight">
+                            Enroll Now
+                        </button>
+                        <p class="text-center text-sm text-blue-300 font-bold uppercase tracking-wider">Limited Seats Available</p>
+                        <p class="text-center text-xs text-gray-200">Offline/Online in Jaggaiahpet</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="glass-panel p-10 rounded-3xl">
+                    <h2 class="text-3xl font-bold mb-8 flex items-center text-white">
+                        <span class="w-8 h-1 bg-blue-500 mr-4 rounded-full"></span>
+                        Course Curriculum
+                    </h2>
+
+                    <div class="space-y-4">
+                        <% course.content.forEach((item, index) => { %>
+                            <div class="curriculum-item glass-panel p-6 rounded-2xl flex items-center group">
+                                <span class="text-blue-400 font-black mr-6 text-xl">0<%= index + 1 %></span>
+                                <span class="text-white text-lg font-bold group-hover:text-blue-300 transition-colors"><%= item %></span>
+                            </div>
+                        <% }) %>
+                    </div>
+
+                    <div class="mt-12 p-8 bg-blue-900/20 rounded-2xl border border-blue-500/30">
+                        <h4 class="text-base font-black text-blue-400 uppercase tracking-widest mb-2">Expert Instruction</h4>
+                        <p class="text-gray-100 font-medium">Our programs are designed by industry professionals at Quantura Technologies to ensure you learn the latest market-ready skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>
