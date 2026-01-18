@@ -2,31 +2,31 @@
   "cloud-computing": {
     "title": "Cloud Computing",
     "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800",
-    "description": "Master AWS, Azure, and Google Cloud platforms.",
-    "content": ["Virtualization", "Cloud Security", "Serverless Architecture", "Storage Solutions"]
+    "description": "Master AWS Cloud platform.",
+    "content": ["Introduction to Cloud Computing", "Intro to AWS Cloud", "Ec2", "S3", "IAM", "VPC", "Load Balancer", "SES", "Cloud watch", "& More ..."]
   },
   "ai-ml": {
     "title": "AI & ML",
     "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800",
     "description": "Deep dive into Neural Networks and Predictive Modeling.",
-    "content": ["Supervised Learning", "Deep Learning", "NLP", "TensorFlow & PyTorch"]
+    "content": ["Introduction to AI and ML", "AI Eco System", "NLP", "ML Models", "& More ..."]
   },
   "python": {
     "title": "Python Programming",
     "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800",
     "description": "The most versatile language for modern development.",
-    "content": ["Data Structures", "Django Web Framework", "Automation Scripts", "Data Analysis"]
+    "content": ["Introduction to Python", "Data Types", "Modules", "Functions", "Automation Scripts", "Classes"]
   },
   "devops": {
     "title": "DevOps",
     "image": "https://images.unsplash.com/photo-1618401471353-b98aee75f71d?q=80&w=800",
     "description": "Bridge the gap between development and operations.",
-    "content": ["CI/CD Pipelines", "Docker & Kubernetes", "Infrastructure as Code", "Monitoring"]
+    "content": ["AWS Cloud", "CI/CD Pipelines", "Docker & Kubernetes", "Infrastructure as Code", "Monitoring"]
   },
   "cyber-security": {
     "title": "Cyber Security",
     "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800",
     "description": "Protect digital assets and networks from threats.",
-    "content": ["Ethical Hacking", "Network Security", "Cryptography", "Incident Response"]
+    "content": [" Introduction to Cybersecurity", "branches in Cybersecurity", "Network Security", "Cloud Security"]
   }
 }

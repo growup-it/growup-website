@@ -29,4 +29,12 @@ app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
+// ADD THIS SECTION TO RUN LOCALLY
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3005;
+    app.listen(PORT, () => {
+        console.log(`Server is running locally at http://localhost:${PORT}`);
+    });
+}
+
 module.exports = app;
