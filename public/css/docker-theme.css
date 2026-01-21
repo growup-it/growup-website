@@ -1,0 +1,233 @@
+/* Docker Hub MCP Theme - Centralized Color System */
+:root {
+    /* Docker Hub MCP Color Scheme */
+    --docker-primary: #0db7ed;
+    --docker-primary-dark: #0099e0;
+    --docker-primary-light: #4dd4f7;
+    --docker-bg-dark: #0a0a0a;
+    --docker-bg-card: #111111;
+    --docker-bg-hover: #1a1a1a;
+    --docker-border: #2a2a2a;
+    --docker-text-primary: #ffffff;
+    --docker-text-secondary: #b3b3b3;
+    --docker-text-muted: #666666;
+}
+
+/* Base Styles */
+body { 
+    background: var(--docker-bg-dark); 
+    color: var(--docker-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Docker MCP Card Component */
+.docker-card {
+    background: var(--docker-bg-card);
+    border: 1px solid var(--docker-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.docker-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--docker-primary), var(--docker-primary-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.docker-card:hover {
+    background: var(--docker-bg-hover);
+    border-color: var(--docker-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(13, 183, 237, 0.15);
+}
+.docker-card:hover::before {
+    opacity: 1;
+}
+
+/* Docker MCP Panel Component */
+.docker-panel {
+    background: var(--docker-bg-card);
+    border: 1px solid var(--docker-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.docker-panel:hover {
+    background: var(--docker-bg-hover);
+    border-color: var(--docker-primary);
+}
+
+/* Docker MCP Button Component */
+.docker-btn {
+    background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-dark));
+    color: var(--docker-text-primary);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(13, 183, 237, 0.3);
+}
+.docker-btn:hover {
+    background: linear-gradient(135deg, var(--docker-primary-light), var(--docker-primary));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 183, 237, 0.4);
+}
+
+/* Docker MCP Text Gradient */
+.text-gradient {
+    background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Docker MCP Hero Background */
+.hero-gradient {
+    background: linear-gradient(135deg, var(--docker-bg-dark) 0%, #1a1a1a 50%, var(--docker-bg-dark) 100%);
+    position: relative;
+}
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(13, 183, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(13, 183, 237, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Icon Container */
+.icon-container {
+    background: rgba(13, 183, 237, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+.docker-card:hover .icon-container {
+    background: rgba(13, 183, 237, 0.2);
+}
+
+/* Form Elements */
+.form-input {
+    background: var(--docker-bg-hover);
+    border: 1px solid var(--docker-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--docker-text-primary);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+.form-input:focus {
+    outline: none;
+    border-color: var(--docker-primary);
+    background: var(--docker-bg-card);
+}
+.form-input::placeholder {
+    color: var(--docker-text-muted);
+}
+
+/* Header Component */
+.docker-header {
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--docker-border);
+}
+
+.nav-link {
+    color: var(--docker-text-primary);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--docker-primary), var(--docker-primary-light));
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--docker-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Footer Component */
+.docker-footer {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--docker-border);
+}
+
+.footer-link {
+    color: var(--docker-primary);
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--docker-primary-light);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .docker-card {
+        padding: 20px !important;
+        border-radius: 8px;
+    }
+    .docker-card:hover {
+        transform: translateY(-2px);
+    }
+    .docker-panel {
+        padding: 20px !important;
+        border-radius: 8px;
+    }
+    .docker-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+    .hero-gradient {
+        padding: 40px 20px !important;
+    }
+    .docker-header {
+        padding: 16px 20px;
+    }
+    .icon-container {
+        padding: 12px;
+    }
+}
+
+/* Small Mobile Optimizations */
+@media (max-width: 480px) {
+    .docker-card {
+        padding: 16px !important;
+    }
+    .docker-panel {
+        padding: 16px !important;
+    }
+    .docker-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    .icon-container {
+        padding: 10px;
+    }
+}

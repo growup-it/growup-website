@@ -6,77 +6,172 @@
     <title>GrowUp Computer Training Center | Jaggaiahpet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <style>
-        body { background: #0f172a; color: white; overflow-x: hidden; }
-
-        /* Glassmorphism Effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #3b82f6;
-            transform: scale(1.05);
-            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.5);
+<style>
+        :root {
+            /* Docker Hub MCP Color Scheme */
+            --docker-primary: #0db7ed;
+            --docker-primary-dark: #0099e0;
+            --docker-primary-light: #4dd4f7;
+            --docker-bg-dark: #0a0a0a;
+            --docker-bg-card: #111111;
+            --docker-bg-hover: #1a1a1a;
+            --docker-border: #2a2a2a;
+            --docker-text-primary: #ffffff;
+            --docker-text-secondary: #b3b3b3;
+            --docker-text-muted: #666666;
         }
 
-        /* High-Tech Gradients */
+        body { 
+            background: var(--docker-bg-dark); 
+            color: var(--docker-text-primary); 
+            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Docker MCP Card Effect */
+        .docker-card {
+            background: var(--docker-bg-card);
+            border: 1px solid var(--docker-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .docker-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--docker-primary), var(--docker-primary-light));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .docker-card:hover {
+            background: var(--docker-bg-hover);
+            border-color: var(--docker-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(13, 183, 237, 0.15);
+        }
+        .docker-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Docker MCP Hero Background */
         .hero-gradient {
-            background: radial-gradient(circle at top right, #1e40af, transparent),
-                        radial-gradient(circle at bottom left, #7e22ce, transparent);
+            background: linear-gradient(135deg, var(--docker-bg-dark) 0%, #1a1a1a 50%, var(--docker-bg-dark) 100%);
+            position: relative;
         }
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(13, 183, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(13, 183, 237, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Docker MCP Text Gradient */
         .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a855f7);
+            background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Docker MCP Button */
+        .docker-btn {
+            background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-dark));
+            color: var(--docker-text-primary);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(13, 183, 237, 0.3);
+        }
+        .docker-btn:hover {
+            background: linear-gradient(135deg, var(--docker-primary-light), var(--docker-primary));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 183, 237, 0.4);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .docker-card {
+                padding: 20px !important;
+                border-radius: 8px;
+            }
+            .docker-card:hover {
+                transform: translateY(-2px);
+            }
+            .hero-gradient {
+                padding: 40px 20px !important;
+            }
+        }
+
+        /* Icon Container */
+        .icon-container {
+            background: rgba(13, 183, 237, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+        .docker-card:hover .icon-container {
+            background: rgba(13, 183, 237, 0.2);
         }
     </style>
 </head>
-<body class="hero-gradient min-h-screen">
+<body class="hero-gradient min-h-screen relative">
 
     <%- include('partials/header') %>
 
-    <section class="container mx-auto px-6 py-24 text-center">
-        <h1 class="text-5xl md:text-8xl font-extrabold mb-6 animate__animated animate__zoomIn">
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-center relative z-10">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 animate__animated animate__zoomIn leading-tight">
             Master the <span class="text-gradient">Future</span>
         </h1>
-        <p class="text-gray-100 text-lg md:text-2xl max-w-3xl mx-auto mb-12 animate__animated animate__fadeIn animate__delay-1s font-medium">
+        <p class="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 sm:mb-12 animate__animated animate__fadeIn animate__delay-1s font-medium leading-relaxed px-4">
             Join <strong class="text-white">GrowUp Computer Training Center</strong> in Seetharam Puram, Jaggaiahpet.
             Industry-leading courses designed to build your tech empire.
         </p>
         <div class="animate__animated animate__fadeInUp animate__delay-1s">
-            <a href="#courses" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-full font-bold text-lg transition-all shadow-lg shadow-blue-500/50 uppercase tracking-tight">
+            <a href="#courses" class="docker-btn inline-block text-center">
                 Explore Our Courses
             </a>
         </div>
     </section>
 
-    <section id="courses" class="container mx-auto px-6 py-20">
-        <div class="flex flex-col items-center mb-16">
-            <h2 class="text-4xl font-bold mb-4 text-white">Specialized Programs</h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+<section id="courses" class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div class="flex flex-col items-center mb-12 sm:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white text-center">Specialized Programs</h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-docker-primary to-docker-primary-light rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             <% Object.keys(courses).forEach(key => { %>
-                <a href="/course/<%= key %>" class="glass-card p-10 rounded-[2rem] block group">
-                    <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-500/40 transition-colors">
-                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="/course/<%= key %>" class="docker-card p-6 sm:p-8 lg:p-10 block group">
+                    <div class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center mb-6 sm:mb-8">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-docker-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
                     </div>
 
-                    <h3 class="text-3xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors"><%= courses[key].title %></h3>
-                    <p class="text-gray-200 mb-8 leading-relaxed line-clamp-3 font-medium">
+                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white group-hover:text-docker-primary transition-colors"><%= courses[key].title %></h3>
+                    <p class="text-gray-300 mb-6 sm:mb-8 leading-relaxed line-clamp-3 font-medium text-sm sm:text-base">
                         <%= courses[key].description %>
                     </p>
 
-                    <div class="flex items-center text-blue-400 font-bold group-hover:text-blue-200 transition-colors">
+                    <div class="flex items-center text-docker-primary font-semibold group-hover:text-docker-primary-light transition-colors text-sm sm:text-base">
                         Learn More
-                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </div>

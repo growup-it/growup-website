@@ -6,93 +6,221 @@
     <title>Contact Us | GrowUp Computer Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <style>
-        body { background: #0f172a; color: white; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+<style>
+        :root {
+            /* Docker Hub MCP Color Scheme */
+            --docker-primary: #0db7ed;
+            --docker-primary-dark: #0099e0;
+            --docker-primary-light: #4dd4f7;
+            --docker-bg-dark: #0a0a0a;
+            --docker-bg-card: #111111;
+            --docker-bg-hover: #1a1a1a;
+            --docker-border: #2a2a2a;
+            --docker-text-primary: #ffffff;
+            --docker-text-secondary: #b3b3b3;
+            --docker-text-muted: #666666;
         }
+
+        body { 
+            background: var(--docker-bg-dark); 
+            color: var(--docker-text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .docker-panel {
+            background: var(--docker-bg-card);
+            border: 1px solid var(--docker-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .docker-panel:hover {
+            background: var(--docker-bg-hover);
+            border-color: var(--docker-primary);
+        }
+
         .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a855f7);
+            background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .hero-bg {
-            background: radial-gradient(circle at top right, #1e3a8a, transparent),
-                        radial-gradient(circle at 10% 20%, #4c1d95, transparent);
+            background: linear-gradient(135deg, var(--docker-bg-dark) 0%, #1a1a1a 50%, var(--docker-bg-dark) 100%);
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(13, 183, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(13, 183, 237, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Icon Containers */
+        .icon-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .icon-primary {
+            background: rgba(13, 183, 237, 0.2);
+            box-shadow: 0 4px 12px rgba(13, 183, 237, 0.3);
+        }
+        .icon-secondary {
+            background: rgba(77, 212, 247, 0.2);
+            box-shadow: 0 4px 12px rgba(77, 212, 247, 0.3);
+        }
+        .icon-accent {
+            background: rgba(0, 153, 224, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 153, 224, 0.3);
+        }
+        .docker-panel:hover .icon-container {
+            transform: scale(1.1);
+        }
+
+        /* Form Elements */
+        .form-input {
+            background: var(--docker-bg-hover);
+            border: 1px solid var(--docker-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--docker-text-primary);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--docker-primary);
+            background: var(--docker-bg-card);
+        }
+        .form-input::placeholder {
+            color: var(--docker-text-muted);
+        }
+
+        /* Docker MCP Button */
+        .docker-btn {
+            background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-dark));
+            color: var(--docker-text-primary);
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(13, 183, 237, 0.3);
+            width: 100%;
+        }
+        .docker-btn:hover {
+            background: linear-gradient(135deg, var(--docker-primary-light), var(--docker-primary));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 183, 237, 0.4);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .docker-panel {
+                padding: 20px !important;
+                border-radius: 8px;
+            }
+            .icon-container {
+                width: 40px;
+                height: 40px;
+            }
+            .hero-bg {
+                padding: 40px 20px !important;
+            }
         }
     </style>
 </head>
-<body class="hero-bg min-h-screen font-sans">
+<body class="hero-bg min-h-screen font-sans relative">
 
     <%- include('partials/header') %>
 
-    <div class="container mx-auto px-4 py-16 max-w-6xl">
-        <div class="text-center mb-16 animate__animated animate__fadeIn">
-            <h1 class="text-5xl font-extrabold mb-4 text-gradient">Get In Touch</h1>
-            <p class="text-gray-300 text-lg">We are here to help you start your journey at GrowUp Computer Training Center.</p>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 max-w-7xl relative z-10">
+        <div class="text-center mb-12 sm:mb-16 animate__animated animate__fadeIn">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gradient">Get In Touch</h1>
+            <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">We are here to help you start your journey at GrowUp Computer Training Center.</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div class="space-y-6 animate__animated animate__fadeInLeft">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+            <div class="space-y-4 sm:space-y-6 animate__animated animate__fadeInLeft">
 
-                <div class="glass-panel p-8 rounded-3xl flex items-start space-x-6">
-                    <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/30">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <div class="docker-panel p-6 sm:p-8 rounded-xl flex items-start space-x-4 sm:space-x-6">
+                    <div class="icon-container icon-primary">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-docker-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Our Location</h3>
-                        <p class="text-gray-300">Seetharam Puram, Jaggaiahpet,<br>Andhra Pradesh, India.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white">Our Location</h3>
+                        <p class="text-gray-300 text-sm sm:text-base">Seetharam Puram, Jaggaiahpet,<br>Andhra Pradesh, India.</p>
                     </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl flex items-start space-x-6">
-                    <div class="w-12 h-12 bg-purple-600 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-purple-500/30">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                <div class="docker-panel p-6 sm:p-8 rounded-xl flex items-start space-x-4 sm:space-x-6">
+                    <div class="icon-container icon-secondary">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-docker-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Call Us Directly</h3>
-                        <p class="text-2xl font-black text-blue-400 tracking-wider">+91 7013726742</p>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white">Call Us Directly</h3>
+                        <p class="text-xl sm:text-2xl font-black text-docker-primary tracking-wider">+91 7013726742</p>
                         <p class="text-gray-400 text-sm mt-1">Available 9:00 AM - 7:00 PM</p>
                     </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl flex items-start space-x-6">
-                    <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div class="docker-panel p-6 sm:p-8 rounded-xl flex items-start space-x-4 sm:space-x-6">
+                    <div class="icon-container icon-accent">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-docker-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Technical Support</h3>
-                        <p class="text-gray-300">Managed by Quantura Technologies</p>
-                        <a href="https://www.quanturatech.com" class="text-blue-400 hover:underline text-sm">Visit Website</a>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-white">Technical Support</h3>
+                        <p class="text-gray-300 text-sm sm:text-base">Managed by Quantura Technologies</p>
+                        <a href="https://www.quanturatech.com" class="text-docker-primary hover:text-docker-primary-light transition-colors text-sm">Visit Website</a>
                     </div>
                 </div>
             </div>
 
             <div class="animate__animated animate__fadeInRight">
-                <form class="glass-panel p-10 rounded-3xl space-y-6">
-                    <h2 class="text-2xl font-bold text-white mb-6">Send an Inquiry</h2>
+                <form class="docker-panel p-6 sm:p-8 lg:p-10 rounded-xl space-y-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-6">Send an Inquiry</h2>
                     <div>
                         <label class="block text-gray-400 text-sm font-bold mb-2">Your Name</label>
-                        <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition" placeholder="Enter your name">
+                        <input type="text" class="form-input" placeholder="Enter your name">
                     </div>
                     <div>
                         <label class="block text-gray-400 text-sm font-bold mb-2">Interested Course</label>
-                        <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition">
-                            <option class="bg-[#0f172a]">Select a Course</option>
-                            <option class="bg-[#0f172a]">Cloud Computing</option>
-                            <option class="bg-[#0f172a]">AI & ML</option>
-                            <option class="bg-[#0f172a]">Python</option>
-                            <option class="bg-[#0f172a]">DevOps</option>
-                            <option class="bg-[#0f172a]">Cyber Security</option>
+                        <select class="form-input">
+                            <option style="background: var(--docker-bg-card);">Select a Course</option>
+                            <option style="background: var(--docker-bg-card);">Cloud Computing</option>
+                            <option style="background: var(--docker-bg-card);">AI & ML</option>
+                            <option style="background: var(--docker-bg-card);">Python</option>
+                            <option style="background: var(--docker-bg-card);">DevOps</option>
+                            <option style="background: var(--docker-bg-card);">Cyber Security</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-gray-400 text-sm font-bold mb-2">Message</label>
-                        <textarea class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition h-32" placeholder="Tell us your requirements..."></textarea>
+                        <textarea class="form-input h-32 resize-none" placeholder="Tell us your requirements..."></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-blue-500/20 uppercase tracking-widest">
+                    <button type="submit" class="docker-btn">
                         Send Message
                     </button>
                 </form>

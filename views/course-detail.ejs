@@ -6,94 +6,172 @@
     <title><%= course.title %> | GrowUp Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <style>
-        body { background: #0f172a; color: #ffffff; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+<style>
+        :root {
+            /* Docker Hub MCP Color Scheme */
+            --docker-primary: #0db7ed;
+            --docker-primary-dark: #0099e0;
+            --docker-primary-light: #4dd4f7;
+            --docker-bg-dark: #0a0a0a;
+            --docker-bg-card: #111111;
+            --docker-bg-hover: #1a1a1a;
+            --docker-border: #2a2a2a;
+            --docker-text-primary: #ffffff;
+            --docker-text-secondary: #b3b3b3;
+            --docker-text-muted: #666666;
         }
+
+        body { 
+            background: var(--docker-bg-dark); 
+            color: var(--docker-text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .docker-panel {
+            background: var(--docker-bg-card);
+            border: 1px solid var(--docker-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .docker-panel:hover {
+            background: var(--docker-bg-hover);
+            border-color: var(--docker-primary);
+        }
+
         .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a855f7);
+            background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .hero-bg {
-            background: radial-gradient(circle at top right, #1e3a8a, transparent),
-                        radial-gradient(circle at 10% 20%, #4c1d95, transparent);
+            background: linear-gradient(135deg, var(--docker-bg-dark) 0%, #1a1a1a 50%, var(--docker-bg-dark) 100%);
+            position: relative;
         }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(13, 183, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(13, 183, 237, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
         .curriculum-item {
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
+            background: var(--docker-bg-card);
+            border: 1px solid var(--docker-border);
         }
         .curriculum-item:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
+            background: var(--docker-bg-hover);
+            border-left: 4px solid var(--docker-primary);
+            border-color: var(--docker-primary);
             padding-left: 1.5rem;
         }
-        /* New Image Styling */
+
+        /* Course Image Styling */
         .course-image-container {
             position: relative;
             overflow: hidden;
-            border-radius: 1.5rem;
+            border-radius: 12px;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--docker-border);
         }
         .course-image-container::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, #0f172a, transparent);
+            background: linear-gradient(to top, var(--docker-bg-dark), transparent);
+        }
+
+        /* Docker MCP Button */
+        .docker-btn {
+            background: linear-gradient(135deg, var(--docker-primary), var(--docker-primary-dark));
+            color: var(--docker-text-primary);
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(13, 183, 237, 0.3);
+        }
+        .docker-btn:hover {
+            background: linear-gradient(135deg, var(--docker-primary-light), var(--docker-primary));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 183, 237, 0.4);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .docker-panel {
+                padding: 20px !important;
+                border-radius: 8px;
+            }
+            .curriculum-item {
+                padding: 16px !important;
+            }
+            .hero-bg {
+                padding: 40px 20px !important;
+            }
         }
     </style>
 </head>
-<body class="hero-bg min-h-screen font-sans">
+<body class="hero-bg min-h-screen font-sans relative">
 
     <%- include('partials/header') %>
 
-    <div class="container mx-auto px-4 py-12 max-w-5xl">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 max-w-7xl relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
 
             <div class="lg:col-span-1 animate__animated animate__fadeInUp">
-                <div class="glass-panel p-6 rounded-3xl sticky top-24">
+                <div class="docker-panel p-4 sm:p-6 rounded-xl lg:sticky lg:top-24">
 
                     <div class="course-image-container aspect-video">
                         <img src="<%= course.image %>" alt="<%= course.title %>" class="w-full h-full object-cover">
                     </div>
 
-                    <h1 class="text-4xl font-extrabold mb-4 text-gradient text-center lg:text-left"><%= course.title %></h1>
-                    <p class="text-white text-opacity-90 mb-8 leading-relaxed font-medium">
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-4 text-gradient text-center lg:text-left"><%= course.title %></h1>
+                    <p class="text-gray-200 mb-6 sm:mb-8 leading-relaxed font-medium text-sm sm:text-base">
                         <%= course.description %>
                     </p>
                     <div class="space-y-4">
-                        <a href="/contact" class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-black text-lg py-4 rounded-xl transition shadow-lg shadow-blue-500/20 uppercase tracking-tight">
+                        <a href="/contact" class="docker-btn block w-full text-center">
                             Enroll Now
                         </a>
-                        <p class="text-center text-sm text-blue-300 font-bold uppercase tracking-wider">Limited Seats Available</p>
-                        <p class="text-center text-xs text-gray-200">Offline/Online in Jaggaiahpet</p>
+                        <p class="text-center text-sm text-docker-primary font-bold uppercase tracking-wider">Limited Seats Available</p>
+                        <p class="text-center text-xs text-gray-400">Offline/Online in Jaggaiahpet</p>
                     </div>
                 </div>
             </div>
 
             <div class="lg:col-span-2 animate__animated animate__fadeInUp animate__delay-1s">
-                <div class="glass-panel p-10 rounded-3xl">
-                    <h2 class="text-3xl font-bold mb-8 flex items-center text-white">
-                        <span class="w-8 h-1 bg-blue-500 mr-4 rounded-full"></span>
+                <div class="docker-panel p-6 sm:p-8 lg:p-10 rounded-xl">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 flex items-center text-white">
+                        <span class="w-6 h-1 sm:w-8 bg-docker-primary mr-3 sm:mr-4 rounded-full"></span>
                         Course Curriculum
                     </h2>
 
-                    <div class="space-y-4">
+                    <div class="space-y-3 sm:space-y-4">
                         <% course.content.forEach((item, index) => { %>
-                            <div class="curriculum-item glass-panel p-6 rounded-2xl flex items-center group">
-                                <span class="text-blue-400 font-black mr-6 text-xl">0<%= index + 1 %></span>
-                                <span class="text-white text-lg font-bold group-hover:text-blue-300 transition-colors"><%= item %></span>
+                            <div class="curriculum-item p-4 sm:p-6 rounded-xl flex items-center group">
+                                <span class="text-docker-primary font-black mr-4 sm:mr-6 text-lg sm:text-xl">0<%= index + 1 %></span>
+                                <span class="text-white text-base sm:text-lg font-bold group-hover:text-docker-primary transition-colors"><%= item %></span>
                             </div>
                         <% }) %>
                     </div>
 
-                    <div class="mt-12 p-8 bg-blue-900/20 rounded-2xl border border-blue-500/30">
-                        <h4 class="text-base font-black text-blue-400 uppercase tracking-widest mb-2 text-center lg:text-left">Expert Instruction</h4>
-                        <p class="text-gray-100 font-medium text-center lg:text-left">Our programs are designed by industry professionals at Quantura Technologies to ensure you learn the latest market-ready skills.</p>
+                    <div class="mt-8 sm:mt-12 p-6 sm:p-8 bg-docker-bg-card rounded-xl border border-docker-border">
+                        <h4 class="text-sm sm:text-base font-black text-docker-primary uppercase tracking-widest mb-2 text-center lg:text-left">Expert Instruction</h4>
+                        <p class="text-gray-300 font-medium text-center lg:text-left text-sm sm:text-base">Our programs are designed by industry professionals at Quantura Technologies to ensure you learn the latest market-ready skills.</p>
                     </div>
                 </div>
             </div>
